@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <title>Profile page</title>
+</head>
+{% load static %}
+<body style= "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/antiquepaper_1920x1234.jpg)" >
+  <h1 style="color:black;font-size:80px"><center>Profile Page</h1><br>
+
+  {% if messsages %}
+    {% for message in messages%}
+      <p class = "{{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+  {% if user %}
+    <ul>
+      <li style="font-size:40px; color:blue">First Name: {{user.first_name}}</li>
+      <li style="font-size:40px; color:blue">Last Name: {{user.last_name}}</li>
+      <li style="font-size:40px; color:blue">User Name: {{user.username}}</li>
+      <a href = "{%url 'blog:edit_profile' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Edit Profile </button></a>
+
+    </ul>
+  {% else %}
+    <h2> Error </h2>
+  {% endif %}
+
+
+  <br>
+  <a href = "{% url 'blog:list_of_users' %}"><button style="color:green;width:150px;height:75px; font-size:25px"> List Of Users </button></a><br><br><br>
+  <a href = "{% url 'blog:following' user.id %}"><button style="color:green;width:150px;height:90px; font-size:25px"> List Of Users I am following </button></a><br><br><br>
+  <a href = "{% url 'blog:write_post' %}"><button style="color:green;width:150px;height:90px; font-size:25px"> Write a Post </button></a><br><br><br>
+  <a href = "{% url 'blog:newsfeed' %}"><button style="color:green;width:150px;height:90px; font-size:25px">  NewsFeed </button></a><br><br><br>
+  <a href = "{% url 'blog:user_posts' %}"><button style="color:green;width:150px;height:90px; font-size:25px"> My Posts </button></a><br><br><br>
+  <a href = "{% url 'blog:logout_page' %}"><button style="color:green;width:150px;height:90px; font-size:25px"> Logout </button></a><br><br><br>
+</body>
+
+</html>

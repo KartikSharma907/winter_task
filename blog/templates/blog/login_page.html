@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body style = "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/futuretech1920x1234.jpg)">
+  <center><h1 style="color:white; font-size:80px">Login</h1></center><br>
+
+  {% if messages %}
+    {% for message in messages %} <p class = "{{ message.tags }} " style="font-size:30px">{{ message }}</p> {% endfor %}
+  {% endif %}
+
+
+  <form action = "{% url 'blog:login_page' %}" method = "post">
+  {% csrf_token %}
+  <label for = 'username'><h2 style="font-size:40px; color:orange"> UserName: </h2></label>
+    <input type = 'text', name = 'username'><br>
+  <label for = 'password'><h2 style="font-size:40px; color:orange"> Password: </h2></label>
+    <input type = 'password', name = 'password'><br><br>
+  <input type = 'submit' , value = 'Submit'>
+  </form>
+
+  <h2 style="color:white"> Submit to create account. </h1>
+    <br><br>
+  <p><a href = {% url 'blog:signup' %}><button> Sign Up </button></a>
+
+
+</body>
+</html>

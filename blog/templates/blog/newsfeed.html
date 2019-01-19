@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>News Feed</title>
+</head>
+
+<body style= "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/antiquepaper_1920x1234.jpg)">
+  <h1 style="font-size:80px"><center> News Feed </h1>
+  {% if post_list %}
+    <ul>
+      {% for post in post_list %}
+      <li>
+        <a href="{% url 'blog:post_detail' post.pk %}" style="font-size:40px;color:black">
+        {{ post.title }}
+      </a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h2> No Posts are available. </h2>
+  {% endif %}
+  <br>
+  <a href = "{% url 'blog:user_page' user.id %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> My Profile </button></a><br><br>
+  <a href = "{% url 'blog:list_of_users' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> List Of Users </button></a><br><br>
+  <a href = "{% url 'blog:following' user.id %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Follow List </button></a><br><br>
+  <a href = "{% url 'blog:write_post' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Write Post </button></a><br><br>
+  <a href = "{% url 'blog:user_posts' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> My Posts </button></a><br><br>
+  <a href = "{% url 'blog:logout_page' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Logout </button></a><br><br>
+
+</body>
+
+</html>

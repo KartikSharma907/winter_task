@@ -1,0 +1,46 @@
+
+<html>
+
+{% load static %}
+<head>
+  <title>Post</title>
+  <link rel="stylesheet" href="{% static 'post_detail.css' type="text/css" %}" />
+
+<body style= "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/antiquepaper_1920x1234.jpg)">
+  <h1 style="font-size:80px"><center>Welcome to post {{post.pk}}!</h1>
+  {% if post %}
+    <h2 style="font-size:40px; color:darkred"> Posted by: {{post.user.username}}</h2>
+    <h2> Title of post is: {{ post.title }} </h2>
+    <h2> Text: {{ post.text }} </h2>
+    <br><br>
+    <h2 style="font-size:40px"> Comments </h2>
+    {% if comments %}
+      <ul>
+      {% for comment in comments %}
+        <li style="font-size:25px"> {{comment.user}} : {{comment.comment}} </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <form action="{% url 'blog:comment' post.pk %}" method="post">
+    {% csrf_token %}
+    <label for = 'comment' style="font-size:40px"> Comment: </label>
+      <input type = 'text' name='comment'><br>
+    <input type = 'submit', value='Submit'>
+  </form>
+
+  {% else %}
+    <h2> Post does not exist! </h2>
+  {% endif %}
+
+</body>
+</head>
+
+<a href="{% url 'blog:list_of_users' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> List of users </button></a><br>
+<a href="{% url 'blog:following' user.id %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Follow List</button></a><br>
+<a href="{% url 'blog:write_post' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Write a New Post </button></a><br>
+<a href="{% url 'blog:user_page' user.id %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> My Profile </button></a><br>
+<a href="{% url 'blog:user_posts' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> My Posts </button></a><br>
+<a href="{% url 'blog:logout_page' %}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Logout </button></a><br>
+
+
+</html>

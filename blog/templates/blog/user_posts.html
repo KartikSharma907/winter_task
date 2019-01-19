@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <title>My Posts</title>
+
+  <body style= "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/antiquepaper_1920x1234.jpg)">
+    <h1 style="font-size:80px"><center>My Posts</h1>
+    {% if posts %}
+      <ul>
+        {% for post in posts %}
+          <li>
+            <a href = "{% url 'blog:post_detail' post.pk %}" style="font-size:40px; color:black">{{ post.title }}</a><br>
+            <a href = "{% url 'blog:delete_post' post.pk %}" style="font-size:20px; color:red"> Delete </a><br><br>
+          </li>
+        {% endfor %}
+      </ul>
+
+    {% else %}
+      <h2> You have not posted anything </h2>
+    {% endif %}
+    <a href = "{% url 'blog:write_post'%}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Write a new post </button></a><br><br>
+    <a href = "{% url 'blog:newsfeed'%}"><button style="width:100px; height:75px; color:darkgreen;background-color:lightblue"> Return back to NewsFeed </button></a>
+
+</body>
+
+
+
+</html>

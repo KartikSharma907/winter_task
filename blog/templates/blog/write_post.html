@@ -1,0 +1,20 @@
+<html>
+
+<head>
+  <title>Write New Post </title>
+</head>
+
+<body style= "background: url(http://blog.hostbaby.com/wp-content/uploads/2013/07/antiquepaper_1920x1234.jpg)">
+  <h1 style="font-size:80px"><center>Write New Post</h1><br>
+  <form action="{% url 'blog:write_post' %}" method = "post">
+    {% csrf_token %}
+  <label for = "title"><h2 style="font-size:40px; color:blue">Title: </h2><br>
+    <input type="text" name="title" style="height:50px;width:500px"><br>
+  <label for = "text"><h2 style="font-size:40px; color:blue">Text: </h2><br>
+    <input type="text" name="text" style="height:200px;width:1100"><br><br>
+  <input type = "submit", value="Submit">
+  </form>
+  
+
+</body>
+</html>
